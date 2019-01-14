@@ -1,12 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import {If, IfMap} from './lib';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+//Component Tests 
+
+
+let IfTest = props => (  
+<If cond={false}>
+    <div>
+        The condition is True
+    </div>
+    <div>
+        The condition is False
+    </div>
+</If>
+)
+
+ReactDOM.render(<IfTest/>, document.getElementById('root'));
