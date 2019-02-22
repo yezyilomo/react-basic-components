@@ -1,35 +1,17 @@
 import React from 'react';
+import { IfMap } from '.';
 
 
-class If extends React.Component {
-    constructor(props) {
-        super(props);
+function If() {
+    let props = arguments[0];
+    if(props.cond !== undefined && props.children !== undefined){
+        // As React component
+        return IfMap(props.cond, props.children);
     }
 
-    render(props) {
-        if (!(this.props.cond === undefined || this.props.conds === undefined)) {
-            throw new Error("You can't pass both 'cond', and 'conds' props at the same time on If Component");
-        }
-        else if (this.props.cond === undefined) {
-            if (this.props.conds.length !== this.props.children.length) {
-                throw new Error("Number of conditions doesn't match number of Components on If Component");
-            }
-            for (let i = 0; i < this.props.conds.length; i++) {
-                if (this.props.conds[i]) {
-                    return this.props.children[i];
-                }
-            }
-        }
-        else {
-            if (this.props.cond) {
-                return this.props.children;
-            }
-            else {
-                return null;
-            }
-        }
-    }
+    // As JS function
+    return IfMap(arguments[0], arguments[1])
 }
 
 
-export {If}
+export { If }

@@ -1,29 +1,31 @@
-function IfMap(conds, actions) {
-    if (Array.isArray(conds)) {
-        if (conds.length === actions.length - 1 || conds.length === actions.length) {
-            for (let i = 0; i < conds.length; i++) {
-                if (conds[i]) {
-                    return actions[i];
-                }
+function IfMap(conds, actions, notFound = null) {
+    if (!Array.isArray(conds)) {
+        conds = [conds];
+    }
+    if (!Array.isArray(actions)) {
+        actions = [actions];
+    }
+
+    if (conds.length === actions.length - 1) {
+        for (var i = 0; i < conds.length; i++) {
+            if (conds[i]) {
+                return actions[i];
             }
         }
-        else {
-            throw "Invalid number of actions in your If";
+        return actions[i];
+    }
+    else if (conds.length === actions.length) {
+        for (var i = 0; i < conds.length; i++) {
+            if (conds[i]) {
+                return actions[i];
+            }
         }
+        return notFound;
     }
     else {
-        if (actions.length < 3) {
-            if (conds) {
-                return actions[0];
-            }
-            else {
-                return actions[1];
-            }
-        }
-        else {
-            throw "Invalid number of actions in your If";
-        }
+        throw "Number of actions do not match number of conditions in If clause";
     }
+
 }
 
-export {IfMap};
+export { IfMap };
