@@ -15,7 +15,7 @@ function IfMap(conds, actions, notFound = null) {
         return actions[i];
     }
     else if (conds.length === actions.length) {
-        for (var i = 0; i < conds.length; i++) {
+        for (let i = 0; i < conds.length; i++) {
             if (conds[i]) {
                 return actions[i];
             }
