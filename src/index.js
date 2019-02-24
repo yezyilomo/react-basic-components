@@ -1,34 +1,46 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { If, For } from './lib';
+import { If, For, Block } from './lib';
 
 //Component Tests 
 
-function IfTest(props) {
+function Tests(props) {
     let isLoggedIn = true;
-    let age = 26;
+    let userName = 'Jason';
+    let age = 20;
+    let attendee = ['John', 'James', 'Ariana', 'Rose', 'Dan', 'Vannesa'];
 
     return (
         <div>
-            {If(isLoggedIn, ['You are logged in..', 'Please login first..'])}
+            <p><b>Login Status: </b> {If(isLoggedIn, ['You are logged in..', 'Please login first..'])} </p>
 
+            <b>Party</b>
             <If cond={age < 21} >
-                <div>You are still young for a beer!..</div>
-                <div>You are old enough to drink a beer!..</div>
+                <Block>
+                    <div>Sorry {userName} you are not allowed to party here!..</div>
+                    <div>Your age is below 21!..</div>
+                </Block>
+                <Block>
+                    <div>Welcome {userName} </div>
+                    <div>What kind drink can I get you?..</div>
+                </Block>
             </If>
-
-            <For in={[1, 2, 3]}>
+            
+            <b><br/>Party Attendee</b>
+            <For i in={attendee}>
                 {i =>
-                    <div>
-                        Count value is: {i}
-                    </div>
+                    <Block>
+                        <div>
+                            * {i}
+                        </div>
+                    </Block>
                 }
             </For>
-            
+
         </div>
     );
 }
 
 
-ReactDOM.render(<IfTest />, document.getElementById('root'));
+ReactDOM.render(<Tests />, document.getElementById('root'));
